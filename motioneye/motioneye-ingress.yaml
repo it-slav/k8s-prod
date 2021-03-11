@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  name: motioneye-ingress
+  namespace: motioneye
+spec:
+  rules:
+    - host: motioneye.prod.suse.ninja
+      http:
+        paths:
+          - backend:
+              serviceName: motioneye-service
+              servicePort: 8765
+            path: /
+  # This section is only required if TLS is to be enabled for the Ingress
+  tls:
+  - hosts:
+    - motioneye.prod.suse.ninja
+    secretName: motioneye-secret
