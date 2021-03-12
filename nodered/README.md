@@ -1,3 +1,3 @@
 ```
-kubectl apply -f nodered-deployment/
+kubectl apply -f nodered/
 ```
